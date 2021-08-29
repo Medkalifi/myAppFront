@@ -1,0 +1,65 @@
+<nav class=" col navbar navbar-expand-lg navbar-dark bg-dark ">
+
+
+  <img src="assets/images/logo1.png" class="rounded" width="50" height="50" />
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink='/cv'>Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/enseignement">Enseignement</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/recherche">Recherche</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/developpement">Developpement</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/publication">Publications</a>
+      </li>
+
+      <li class="nav-item dropdown" *ngIf="isAdmin()">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Admin
+        </a>
+        <div class="dropdown-menu"  aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink="/users">Liste Utilisateurs</a>
+          <a class="dropdown-item"    routerLink="/adduser"  >Ajouter Utilisateur</a>
+          <a class="dropdown-item"    routerLink="/chargerPubli"  >Cherger Publications</a>
+
+        </div>
+      </li>
+
+      <div  *ngIf="getUsenameConnected()"  style="color: rgb(255, 0, 98);">Hello : {{getUsenameConnected()}}</div>
+    </ul>
+
+    <div>
+      <ul class="nav navbar-nav pull-right">
+        <li>
+          <a *ngIf="!isAuthenticated()" class="btn btn-primary" routerLink="/login">Login</a>
+          <a *ngIf="isAuthenticated()" class="btn btn-primary" (click)="onLogout()">Logout</a>
+
+        </li>
+      </ul>
+    </div>
+
+
+
+
+  </div>
+
+</nav>
+
+
+
+
+<router-outlet></router-outlet>

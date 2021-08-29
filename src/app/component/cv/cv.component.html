@@ -1,0 +1,93 @@
+<p></p>
+<div class="container mr-6" *ngIf="this.authService.isAdmin()">
+  <button class="btn btn-primary" (click)="ajouterFormation()"> Ajouter</button>
+</div>
+<p></p>
+
+<div class="container" *ngIf="mode == 2">
+  <table class="table table-bordered table-striped" *ngIf="formations">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Année début</th>
+        <th scope="col">Année fin</th>
+        <th scope="col">Lieu </th>
+        <th scope="col">Intitulé</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let formation of formations">
+
+        <td>{{formation.anneeDebut | date:'MM/YYYY'}}</td>
+        <td>{{formation.anneeFin |date :'MM/YYYY'}}</td>
+        <td>{{formation.lieu}}</td>
+        <td>{{formation.intitule}}</td>
+        <td class="btn btn-success" (click)="onVisualiserFormation(formation?.id)">Visualiser</td>
+        
+          <td class="btn btn-info" (click)="onEditFormation(formation?.id)">Modifier</td>
+          <td class="btn btn-danger" (click)="onDeleteFormation(formation.id)">Supprimer</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+<div class="container" *ngIf="mode == 1">
+  <div class="card-body">
+
+
+    <form (ngSubmit)="onSubmit(f.value)" #f="ngForm">
+
+      <fieldset class="form-control">
+        <legend>Ajouter une Formation</legend>
+        <div class="form-group ">
+          <label for="anneeDebut">Année Début</label>
+          <input class="form-control" id="anneeDebut" name="anneeDebut" type="date" ngModel>
+        </div>
+        <div class="form-group">
+          <label for="anneezFin">Année Fin</label>
+          <input class="form-control" id="anneeFin" name="anneeFin" type="date" ngModel>
+        </div>
+
+        <div class="form-group">
+          <label for="lieu">Lieu </label>
+          <input class="form-control" id="lieu" name="lieu" type="text" ngModel>
+        </div>
+
+        <div class="form-group">
+          <label for="intitule">Intitulé du Poste </label>
+          <textarea class="form-control" id="intitule" name="intitule" rows="3" ngModel> </textarea>
+        </div>
+        <button class="btn btn-info float-right" type="submit">Ajouter</button>
+
+      </fieldset>
+    </form>
+
+  </div>
+
+
+</div>
+
+<div *ngIf="mode == 3">
+
+
+
+  <div class="container">
+    <div class="form-group">
+
+      <p style="color: red;">Formation choisie </p>
+      <label>Date début : </label> <label> {{formation.anneeDebut}} </label>
+    </div>
+    <div class="form-group">
+      <label>Date fin : </label> <label> {{formation.anneeFin}} </label>
+    </div>
+    <div class="form-group">
+      <label> Lieu : </label> <label> {{formation.lieu}} </label>
+    </div>
+    <div class="form-group">
+      <label>Intitulé : </label> <label> {{formation.intitule}} </label>
+    </div>
+  </div>
+</div>

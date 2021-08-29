@@ -1,0 +1,67 @@
+<div class="card my-5"  *ngIf="mode ==1" >
+    <div class="card-body">
+<div class="mb-3">
+  <form #f="ngForm" (ngSubmit) ="recuperer(f.value)"   >
+    <div class="form-group">
+      <label>Mot clé </label>
+      <input type="text" name="keyword" ngModel>
+      <button type="submit" class="btn btn-primary"  >Rechercher</button>
+      
+    </div>
+ 
+</form>
+</div>
+<button class="btn btn-primary" (click)="refresh()" >Refresh list</button>
+      
+      <table class="table table-bordered table-striped" *ngIf="users">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">Email</th>
+            <th scope="col">Age</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+             <td>{{user.id}}</td> 
+            <td>{{user.nom}}</td>
+            <td>{{user.prenom}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.age}}</td>
+           <td class="btn btn-success" (click) = "onVisualiserUser(user?.id)">Visualiser</td>
+           <td class="btn btn-info" (click) = "onEditUser(user?.id)">Modifier</td>
+           <td class="btn btn-danger" (click) = "onDeleteUser(user.id)">Supprimer</td>
+           
+           
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div *ngIf="mode == 2">
+
+
+   
+    <div class="container">
+ <div class="form-group">
+
+  <p style="color: red;">Utilisateur choisi </p>
+  <label>Nom : </label> <label> {{user.nom}} </label> 
+ </div>
+ <div class="form-group">
+  <label>Prenom : </label> <label> {{user.prenom}} </label> 
+ </div>
+ <div class="form-group">
+  <label>E mail  : </label> <label> {{user.email}} </label> 
+ </div>
+ <div class="form-group">
+  <label>Age : </label> <label> {{user.age}} </label> 
+ </div>
+</div>
+</div>
+
+
