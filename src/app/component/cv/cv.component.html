@@ -1,3 +1,33 @@
+<nav class="navbar navbar-expand-sm bg-light navbar-light">
+  <ul class="navbar navbar-nav">
+    <li>
+      <button class="btn btn-sm btn-outline-info ml-2" (click)="getAllFormations()">Formation</button>
+    </li>
+    <li>
+      <button  class="btn btn-sm btn-outline-info ml-2" (click)="getAllExpPros()" >Expérience professionnelle</button>
+    </li>
+    <li>
+      <button     class="btn btn-sm btn-outline-info ml-2">Available</button>
+    </li>
+    <li>
+      <button     class="btn btn-sm btn-outline-info ml-2">New</button>
+    </li>
+    <li>
+      <button     class="btn btn-sm btn-outline-info ml-2">New</button>
+    </li>
+  </ul>
+  <ul class="navbar navbar-nav ml-auto">
+    <li>
+      <form #f="ngForm" class="form-inline">
+          <input ngModel name="keyword"  type="text">
+          <button class="btn btn-sm btn-outline-info ml-2">
+            <span class="fa fa-search"></span>
+          </button>
+      </form>
+    </li>
+  </ul>
+</nav>
+
 <p></p>
 <div class="container mr-6" *ngIf="this.authService.isAdmin()">
   <button class="btn btn-primary" (click)="ajouterFormation()"> Ajouter</button>
@@ -22,10 +52,18 @@
         <td>{{formation.anneeFin |date :'MM/YYYY'}}</td>
         <td>{{formation.lieu}}</td>
         <td>{{formation.intitule}}</td>
-        <td class="btn btn-success" (click)="onVisualiserFormation(formation?.id)">Visualiser</td>
+        <div>
+        <td   class="btn btn-success" (click)="onVisualiserFormation(formation?.id)">
+          <span class="fa fa-eye"></span>
+        </td>
         
-          <td class="btn btn-info" (click)="onEditFormation(formation?.id)">Modifier</td>
-          <td class="btn btn-danger" (click)="onDeleteFormation(formation.id)">Supprimer</td>
+          <td class="btn btn-info" (click)="onEditFormation(formation?.id)">
+            <span class="fa fa-edit"></span>
+          </td>
+          <td class="btn btn-danger" (click)="onDeleteFormation(formation.id)">
+            <span class="fa fa-trash-o"></span>
+          </td>
+        </div>
       </tr>
     </tbody>
   </table>
@@ -72,8 +110,6 @@
 
 <div *ngIf="mode == 3">
 
-
-
   <div class="container">
     <div class="form-group">
 
@@ -91,3 +127,43 @@
     </div>
   </div>
 </div>
+
+<div class="container" >
+  <table class="table table-bordered table-striped" *ngIf="expPros">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Année début</th>
+        <th scope="col">Année fin</th>
+        <th scope="col">Lieu </th>
+        <th scope="col">Client</th>
+        <th scope="col">Description</th>
+        <th scope="col">Role</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let formation of formations">
+
+        <td>{{formation.anneeDebut | date:'MM/YYYY'}}</td>
+        <td>{{formation.anneeFin |date :'MM/YYYY'}}</td>
+        <td>{{formation.lieu}}</td>
+        <td>{{formation.client}}</td>
+        <td>{{formation.description}}</td>
+        <td>{{formation.role}}</td>
+        <div>
+        <td   class="btn btn-success" (click)="onVisualiserFormation(formation?.id)">
+          <span class="fa fa-eye"></span>
+        </td>
+        
+          <td class="btn btn-info" (click)="onEditFormation(formation?.id)">
+            <span class="fa fa-edit"></span>
+          </td>
+          <td class="btn btn-danger" (click)="onDeleteFormation(formation.id)">
+            <span class="fa fa-trash-o"></span>
+          </td>
+        </div>
+      </tr>
+    </tbody>
+  </table>
+</div>
+

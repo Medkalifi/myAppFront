@@ -24,5 +24,7 @@ download(filename: string): Observable<HttpEvent<Blob>> {
     responseType: 'blob'
   });
 }
-
+charger(){
+ return  this.http.get('http://localhost:8080/startJob');
+}
 }

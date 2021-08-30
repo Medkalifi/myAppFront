@@ -16,6 +16,7 @@ host : string ="http://localhost:8080"
   public  isAuthentifie!: boolean;
   public userAuthenticated : any ;
   public jwt!: string;
+  userConnected!: string;
 
   constructor(private http : HttpClient) { }
 
@@ -52,6 +53,7 @@ return this.http.post(this.host+"/register", user )
  public saveAutenticatedUser(jwt : string){
     if(this.userAuthenticated){
       localStorage.setItem('token', jwt);
+   localStorage.setItem('userConnected', this.userName);
     }
   }
 
@@ -76,6 +78,7 @@ return this.http.post(this.host+"/register", user )
 
 loadToken() {
   this.jwt=localStorage.getItem('token') as string;
+  this.userConnected = localStorage.getItem('userConnected') as string
   return this.jwt;
 }
 
@@ -92,6 +95,7 @@ initParamsCredentials(){
 
  public loadAuthenticatedUserFromLocalStorage(){
  let t = localStorage.getItem('token');
+ 
  if(t){
    let user = JSON.parse(atob(t));
      

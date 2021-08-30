@@ -21,7 +21,6 @@ constructor(private router : Router,
 }
   ngOnInit(): void {
     this.authService.loadToken()
-  //  this.getUsenameConnected();
   // this.authService.loadAuthenticatedUserFromLocalStorage();
   }
 onLogout(){

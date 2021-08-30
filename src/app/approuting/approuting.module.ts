@@ -22,6 +22,7 @@ const routes : Routes = [
   {path :'recherche', component : RechercheComponent},
   {path : 'developpement' , component : DeveloppementComponent},
   {path : 'publication', component : PublicactionComponent},
+ 
   {path : 'login', component : LoginComponent},
   {path : 'register', component : RegisterComponent},
   {path :'' , redirectTo :"/cv" , pathMatch:"full"},

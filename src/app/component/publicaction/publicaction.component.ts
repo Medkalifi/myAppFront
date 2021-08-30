@@ -13,6 +13,7 @@ import { map } from 'highcharts';
   styleUrls: ['./publicaction.component.css']
 })
 export class PublicactionComponent implements OnInit {
+  publications : any;
   filenames: string[] = [];
   fileStatus = { status: '', requestType: '', percent: 0 };
   
@@ -24,13 +25,22 @@ export class PublicactionComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // this.getAllPublications();
+     this.getAllPublications();
+  }
+
+  chargerPulionclations(){
+    return this.fileService.charger().subscribe(res=>{
+      console.log(res);
+      
+    },err=>{
+      console.log(err);
+      
+    })
   }
 
   getAllPublications() {
-    return this.publiService.findAll('/publications').subscribe(res => {
-     // this.publications = res;
-      console.log(res);
+    return this.publiService.findAll('/publications').subscribe((res : any)=> {
+     this.publications = res;
     }, err => {
 
     })

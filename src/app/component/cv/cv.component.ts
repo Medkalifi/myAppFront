@@ -15,6 +15,7 @@ export class CvComponent implements OnInit {
   formations: any;
   mode: number = 0;
   formation: any;
+  expPros : any;
 
 
   constructor(private cvService: CrudService,
@@ -22,7 +23,7 @@ export class CvComponent implements OnInit {
     public authService : AuthentificationService) { }
 
   ngOnInit() {
-    this.getAllFormations();
+   // this.getAllFormations();
 
   }
   getAllFormations(){
@@ -99,5 +100,16 @@ export class CvComponent implements OnInit {
 
       })
     }
+  }
+
+  getAllExpPros(){
+    
+    this.cvService.findAll('/expPros').subscribe(data => {
+      this.expPros = data;
+    }, err => {
+      this.authService.logout();
+      this.router.navigateByUrl('/login');
+    });
+
   }
 }
