@@ -15,7 +15,7 @@ import { ApproutingModule } from './approuting/approuting.module';
 import { CrudService} from './service/crud-service';
 import { UserFormComponent } from './component/user-form/user-form.component';
 import { UserListComponent } from './component/user-list/user-list.component';
-import { CvComponent } from './component/cv/cv.component';
+import { ProfilComponent } from './component/profil/profil.component';
 import { EnseignementComponent } from './component/enseignement/enseignement.component';
 import { RechercheComponent } from './component/recherche/recherche.component';
 import { DeveloppementComponent } from './component/developpement/developpement.component';
@@ -23,6 +23,9 @@ import { PublicactionComponent } from './component/publicaction/publicaction.com
 import { EditUserComponent } from './component/edit-user/edit-user.component';
 import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
+import { NavbarComponent } from './component/navbar/navbar.component';
+import { FormationComponent } from './component/profil/formation/formation.component';
+import { ExpProfessionnelleComponent } from './component/profil/exp-professionnelle/exp-professionnelle.component';
 
 
 @NgModule({
@@ -30,14 +33,17 @@ import { RegisterComponent } from './component/register/register.component';
     AppComponent,
     UserFormComponent,
     UserListComponent,
-    CvComponent,
+    ProfilComponent,
     EnseignementComponent,
     RechercheComponent,
     DeveloppementComponent,
     PublicactionComponent,
     EditUserComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    NavbarComponent,
+    FormationComponent,
+    ExpProfessionnelleComponent
    
   ],
   imports: [

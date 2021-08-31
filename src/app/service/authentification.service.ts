@@ -20,49 +20,48 @@ host : string ="http://localhost:8080"
 
   constructor(private http : HttpClient) { }
 
-
   public login(user: any){
     return this.http.post(this.host+"/login", user, {observe : 'response'});
-    
-
-  }
+    }
 
 
   public register(user :any){
-return this.http.post(this.host+"/register", user )
+return this.http.post(this.host+"/register", user,  {observe : 'response'}  )
 
   }
 
  public saveToken(jwt : string){
-    localStorage.setItem('token', jwt);
+   
     this.jwt = jwt;
     this.parseJWT();
+    localStorage.setItem('token', jwt);
+    localStorage.setItem('userConnected', this.userName);
+      
   }
   parseJWT() {
     let jwtHelper = new JwtHelperService();
     let objJWT = jwtHelper.decodeToken(this.jwt);
     
-    
-   this.userName = objJWT.sub;
+    this.userName = objJWT.sub;
     this.roles= objJWT.roles;
     this.roles=jwtHelper.decodeToken(this.jwt).roles;
     console.log(this.roles[0]);
+    console.log(this.userName);
+    
     
   }
 
  public saveAutenticatedUser(jwt : string){
     if(this.userAuthenticated){
       localStorage.setItem('token', jwt);
-   localStorage.setItem('userConnected', this.userName);
+   
     }
   }
 
-  public isAdmin(){
-   return this.roles.indexOf('ADMIN')>-1;
-    
-    
-  //  return this.roles[0] == 'ADMIN';
+  
 
+  public isAdmin(){
+    return this.roles.indexOf('ADMIN')>-1  
   }
 
   public isUser(){
@@ -78,7 +77,7 @@ return this.http.post(this.host+"/register", user )
 
 loadToken() {
   this.jwt=localStorage.getItem('token') as string;
-  this.userConnected = localStorage.getItem('userConnected') as string
+ this.userName = localStorage.getItem('userConnected') as string;
   return this.jwt;
 }
 
@@ -95,6 +94,7 @@ initParamsCredentials(){
 
  public loadAuthenticatedUserFromLocalStorage(){
  let t = localStorage.getItem('token');
+ let u = localStorage.getItem('userConnected')
  
  if(t){
    let user = JSON.parse(atob(t));
@@ -107,6 +107,7 @@ initParamsCredentials(){
   }
   public removeTokenFromLocalStorage(){
     localStorage.removeItem('token');
+    localStorage.removeItem('userConnected')
     this.jwt = '';
     this.isAuthentifie = false;
     this.userAuthenticated = undefined;

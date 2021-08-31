@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     let token = this.authservice.loadToken();
       if(token){
-        this.router.navigateByUrl('/cv')
+        this.router.navigateByUrl('/profil')
       }
   }
 
@@ -27,7 +27,7 @@ console.log(res.headers.get('authorization'));
 let jwt = res.headers.get('authorization') as string;
 this.authservice.saveToken(jwt);
 
-this.router.navigateByUrl('/cv')
+this.router.navigateByUrl('/profil')
 
 }, err=>{
     this.mode=1;
