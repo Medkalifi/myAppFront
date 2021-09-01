@@ -64,7 +64,10 @@ export class CrudService {
   }
 
 
-
+public exportPdf(): Observable<Blob>{
+ 
+  return this.http.get(this.host+'/export/pdf', { responseType: 'blob' });
+}
 
 
 
