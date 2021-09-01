@@ -1,0 +1,113 @@
+<!-- affichage bouton ajout exp pro  en mode admin -->
+<div class=" container  ">
+    <button (click)="ajouterExpPro()" class="btn btn-default ">
+        <span class="fa fa-plus"> Ajouter une Exp. Pro </span>
+    </button>
+</div>
+<!-- bloc affichage exp pro  -->
+<div class="container" *ngIf="mode == 2">
+    <table class="table table-bordered table-striped" *ngIf="expPros">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Année début</th>
+                <th scope="col">Année fin</th>
+                <th scope="col">Lieu </th>
+                <th scope="col">Client </th>
+                <th scope="col">Nom projet  </th>
+                <th scope="col">Description </th>
+                <th scope="col">Role </th>
+                <th scope="col">Actions</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let expPro of expPros">
+
+                <td>{{expPro.anneeDebut | date:'MM/YYYY'}}</td>
+                <td>{{expPro.anneeFin |date :'MM/YYYY'}}</td>
+                <td>{{expPro.lieu}}</td>
+                <td>{{expPro.client}}</td>
+                <td>{{expPro.projet}}</td>
+                <td>{{expPro.description}}</td>
+                <td>{{expPro.role}}</td>
+
+                <td class="btn btn-success" (click)="onVisualiserExpPro(expPro?.id)">
+                    <span class="fa fa-eye"></span>
+                </td>
+
+                <td class="btn btn-info" (click)="onEditExpPro(expPro?.id)">
+                    <span class="fa fa-edit"></span>
+                </td>
+                <td class="btn btn-danger" (click)="onDeleteExpPro(expPro.id)">
+                    <span class="fa fa-trash-o"></span>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!-- Bloc ajout de l'experience pro    -->
+<div class="container col-md-6" *ngIf="mode == 1" > 
+    <div class="card-body">
+
+        <form (ngSubmit)="onSubmit(f.value)" #f="ngForm">
+
+            <fieldset class="form-control">
+                <legend>Ajouter une Mission</legend>
+                <div class="form-group ">
+                    <label for="anneeDebut">Année Début</label>
+                    <input class="form-control" id="anneeDebut" name="anneeDebut" type="date" ngModel>
+                </div>
+                <div class="form-group">
+                    <label for="anneezFin">Année Fin</label>
+                    <input class="form-control" id="anneeFin" name="anneeFin" type="date" ngModel>
+                </div>
+
+                <div class="form-group">
+                    <label for="lieu">Lieu </label>
+                    <input class="form-control" id="lieu" name="lieu" type="text" ngModel>
+                </div>
+                <div class="form-group">
+                    <label for="lieu">Client </label>
+                    <input class="form-control" id="client" name="client" type="text" ngModel>
+                </div>
+                <div class="form-group">
+                    <label for="projet">Nom du Projet  </label>
+                    <input class="form-control" id="projet" name="projet" type="text" ngModel>
+                </div>
+
+                <div class="form-group">
+                    <label for="client"> Description  </label>
+                    <textarea class="form-control" id="description" name="description" rows="3" ngModel> </textarea>
+                </div>
+                <div class="form-group">
+                    <label for="projet">Rôle</label>
+                    <input class="form-control" id="role" name="role" type="text" ngModel>
+                </div>
+                <button class="btn btn-info float-right" type="submit">Ajouter</button>
+
+            </fieldset>
+        </form>
+
+    </div>
+</div>
+
+<div *ngIf="mode == 3 ">
+
+    <div class="container" *ngIf="expPro">
+      <div class="form-group">
+  
+        <p style="color: red;">Exp Pro selectionnée  </p>
+        <label>Date début : </label> <label> {{expPro.anneeDebut}} </label>
+      </div>
+      <div class="form-group">
+        <label>Date fin : </label> <label> {{expPro.anneeFin}} </label>
+      </div>
+      <div class="form-group">
+        <label> Lieu : </label> <label> {{expPro.lieu}} </label>
+      </div>
+      <div class="form-group">
+        <label>Intitulé : </label> <label> {{expPro.intitule}} </label>
+      </div>
+    </div>
+  </div>
